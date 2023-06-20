@@ -5,7 +5,6 @@ import Table from "./Components/Table";
 function App() {
   const [contacts, setContacts] = useState([]);
   const getInput = (values) => {
-    console.log(values);
     setContacts([].concat(values, contacts));
   };
   console.log(contacts);

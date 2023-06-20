@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import shortid from "shortid";
 const initialState = {
   name: "",
   email: "",
@@ -12,14 +12,17 @@ const Contact = ({ getInput }) => {
   const handleInput = (e) => {
     setValue({
       ...values,
+      id: shortid.generate(),
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getInput(values);
-    setValue({ ...initialState });
+    if (name && email) {
+      getInput(values);
+      setValue({ ...initialState });
+    }
   };
 
   return (
@@ -73,7 +76,13 @@ const Contact = ({ getInput }) => {
           >
             Type:
           </label>
-          <select name="group" id="" value={group} onChange={handleInput}>
+          <select
+            name="group"
+            id=""
+            value={group}
+            onChange={handleInput}
+            style={{ height: "25px", width: "200px" }}
+          >
             <option value="">Select the type</option>
 
             <option value="Home">Home</option>
@@ -89,7 +98,7 @@ const Contact = ({ getInput }) => {
               backgroundColor: "#1e88e5",
               border: "none",
               borderRadius: "5px",
-              marginBottom: "40px",
+              marginBottom: "20px",
               cursor: "pointer",
               fontWeight: "bold",
             }}

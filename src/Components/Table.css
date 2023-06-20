@@ -3,4 +3,8 @@ td {
   text-align: left;
   padding: 8px;
   border: 2px solid black;
+  margin: 100px;
+}
+.btn {
+  padding: 0px !important;
 }
