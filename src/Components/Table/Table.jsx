@@ -3,7 +3,7 @@ import "./Table.css";
 function Table({ contacts }) {
   const [type, setType] = useState("All");
   const [search, setSearch] = useState("");
-  const [del, setDel] = useState("");
+  const [del, setDel] = useState(false);
   let filteredArr = [];
   function handleSelect(e) {
     setType(e.target.value);
@@ -23,6 +23,15 @@ function Table({ contacts }) {
     );
   }
   //console.log(contacts);
+  function handleDel(id) {
+    for (let i = 0; i < filteredArr.length; i++) {
+      if (id === filteredArr[i].id) {
+        contacts.splice(i, 1);
+        console.log("yes");
+        break;
+      }
+    }
+  }
 
   return (
     <div>
@@ -40,6 +49,15 @@ function Table({ contacts }) {
           <option value="Office">Office</option>
           <option value="">None</option>
         </select>
+        {/* <h4 style={{ marginRight: "20px", marginLeft: "20px" }}>Sort by: </h4>
+        <select
+          value={type}
+          onChange={handleSelect}
+          style={{ height: "30px", backgroundColor: "#1976d2" }}
+        >
+          <option value="Name">Name</option>
+          <option value="Email">Email</option>
+        </select> */}
         <input
           type="search"
           placeholder="Search by name or email"
@@ -64,8 +82,12 @@ function Table({ contacts }) {
               <td>{contact.name}</td>
               <td>{contact.email}</td>
               <td>{contact.group}</td>
-              <td className="btn">
+              <td className="btn" style={{ alignItems: "center" }}>
                 <button
+                  onClick={() => {
+                    handleDel(contact.id);
+                    setDel(!del);
+                  }}
                   style={{
                     height: "30px",
                     width: "120px",

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Contact from "./Components/Contact.jsx";
-import Table from "./Components/Table";
+import Table from "./Components/Table/Table.jsx";
 function App() {
   const [contacts, setContacts] = useState([]);
   const getInput = (values) => {
